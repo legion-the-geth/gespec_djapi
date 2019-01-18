@@ -1,0 +1,23 @@
+from django.db import models
+
+class Annuaire(models.Model):
+    """
+    Définition du modèle d'un Annuaire de type AD ou LDAP
+    """
+    # Attributs propres
+    created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=100, blank=True, default='inconnu')
+    host = models.CharField(max_length=100, blank=True, null=True)
+    port = models.CharField(max_length=5, blank=True, null=True)
+    user = models.CharField(max_length=50, blank=True, null=True)
+    pw = models.CharField(max_length=25, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_sentinel_ad():
+        return Annuaire.objects.get_or_create(name='inconnu')[0]
+
+    class Meta:
+        ordering = ('-last_modified', '-created')
