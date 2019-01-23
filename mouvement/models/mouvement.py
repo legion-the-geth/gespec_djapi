@@ -9,11 +9,12 @@ class Mouvement(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100, blank=True, default='inconnu')
 
+    class Meta:
+        ordering = ('-last_modified', '-created')
+
     def __str__(self):
         return 'myName'
 
     def get_sentinel_movt():
         return Mouvement.objects.get_or_create(name='inconnu')[0]
-
-    class Meta:
-        ordering = ('-last_modified', '-created')
+        
