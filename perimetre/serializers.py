@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from perimetre.models import Annuaire, Client, Perimetre
+from django.contrib.auth.models import User
 
 class AnnuaireSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +16,8 @@ class PerimetreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Perimetre
         fields = ('id', 'created', 'last_modified', 'name', 'code')
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name', 'email')
