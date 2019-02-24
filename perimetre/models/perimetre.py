@@ -11,9 +11,9 @@ class Perimetre(models.Model):
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=5)
     # Attributs liés
-    manager = models.ForeignKey('auth.User', related_name='perimetres', on_delete=models.SET_NULL)
-    client = models.ForeignKey(Client, related_name='perimetres', on_delete=models.SET(Client.get_sentinel_client))
-    annuaire = models.ForeignKey(Annuaire, related_name='perimetres', on_delete=models.SET(Annuaire.get_sentinel_ad))
+    manager = models.ForeignKey('auth.User', related_name='perimetres', blank=True, null=True, on_delete=models.SET_NULL)
+    client = models.ForeignKey(Client, related_name='perimetres', blank=True, null=True, on_delete=models.SET_NULL)
+    annuaire = models.ForeignKey(Annuaire, related_name='perimetres', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-last_modified', '-created')

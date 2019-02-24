@@ -20,7 +20,7 @@ class Profile(models.Model):
         ordering = ('-created_on')
 
     def get_sentinel_user():
-        return User.objects.get_or_create(name='inconnu')[0]
+        return User.objects.get_or_create(username='unknown')[0]
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
