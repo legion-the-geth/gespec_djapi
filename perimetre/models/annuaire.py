@@ -13,11 +13,11 @@ class Annuaire(models.Model):
     user = models.CharField(max_length=50, blank=True, null=True)
     pw = models.CharField(max_length=25, blank=True, null=True)
 
+    class Meta:
+        ordering = ('-last_modified', '-created')
+
     def __str__(self):
         return self.name
 
     def get_sentinel_ad():
         return Annuaire.objects.get_or_create(name='inconnu')[0]
-
-    class Meta:
-        ordering = ('-last_modified', '-created')

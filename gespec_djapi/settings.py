@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gespec',
         'USER': 'gespec',
-        'PASSWORD': '1234',
+        'PASSWORD': 'gespec',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
