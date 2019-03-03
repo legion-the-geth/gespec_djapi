@@ -19,5 +19,3 @@ class Annuaire(models.Model):
     def __str__(self):
         return self.name
 
-    def get_sentinel_ad():
-        return Annuaire.objects.get_or_create(name='inconnu')[0]

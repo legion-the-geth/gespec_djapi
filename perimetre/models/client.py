@@ -14,6 +14,3 @@ class Client(models.Model):
 
     def __str__(self):
         return self.name
-
-    def get_sentinel_client():
-        return Client.objects.get_or_create(name='inconnu')[0]
