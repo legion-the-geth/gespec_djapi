@@ -5,7 +5,8 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     """
-    Définition du modèle d'un périmètre de conformité.
+    Définition du modèle de profile 
+    qui complète l'objet User par défaut de Django
     """
     # Attributs propres
     matricule = models.CharField(max_length=6, blank=True, null=True)
@@ -18,9 +19,6 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ('-created_on')
-
-    def get_sentinel_user():
-        return User.objects.get_or_create(username='unknown')[0]
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
