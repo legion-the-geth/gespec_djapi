@@ -7,7 +7,7 @@ class Perimetre(models.Model):
     """
     # Attributs propres
     created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
+    modified_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=5)
     # Attributs liés
@@ -16,7 +16,7 @@ class Perimetre(models.Model):
     annuaire = models.ForeignKey(Annuaire, related_name='perimetres', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:
-        ordering = ('-last_modified', '-created')
+        ordering = ('-modified_at', '-created')
 
     def __str__(self):
         return '%s (%s)' % (self.name, self.code)

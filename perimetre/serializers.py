@@ -7,25 +7,19 @@ class PerimetreSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Perimetre
-        fields = ('id', 'created', 'last_modified', 'name', 'code', 'manager')
+        fields = ('id', 'created_at', 'modified_at', 'name', 'code', 'manager')
 
 class UserSerializer(serializers.ModelSerializer):
-    perimetres = serializers.PrimaryKeyRelatedField(many=True, queryset=Perimetre.objects.all())
-    
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'perimetres')
+        fields = '__all__'
 
-class AnnuaireSerializer(serializers.HyperlinkedModelSerializer):
-    perimetres = serializers.PrimaryKeyRelatedField(many=True, queryset=Perimetre.objects.all())
-
+class AnnuaireSerializer(serializers.ModelSerializer):
     class Meta:
         model = Annuaire
-        fields = ('id', 'created', 'last_modified', 'name', 'host', 'port', 'user', 'pw', 'perimetres')
+        fields = '__all__'
 
-class ClientSerializer(serializers.HyperlinkedModelSerializer):
-    perimetres = serializers.PrimaryKeyRelatedField(many=True, queryset=Perimetre.objects.all())
-
+class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
-        fields = ('id', 'created', 'last_modified', 'name', 'perimetres')
+        fields = '__all__'

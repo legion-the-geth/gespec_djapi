@@ -5,8 +5,8 @@ class Annuaire(models.Model):
     Définition du modèle d'un Annuaire de type AD ou LDAP
     """
     # Attributs propres
-    created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100, blank=True, default='inconnu')
     host = models.CharField(max_length=100, blank=True, null=True)
     port = models.CharField(max_length=5, blank=True, null=True)
@@ -14,7 +14,7 @@ class Annuaire(models.Model):
     pw = models.CharField(max_length=25, blank=True, null=True)
 
     class Meta:
-        ordering = ('-last_modified', '-created')
+        ordering = ('-modified_at', '-created')
 
     def __str__(self):
         return self.name

@@ -18,7 +18,8 @@ class Asset(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     code = models.CharField(max_length=10)
-    adresse_mac = models.CharField(max_length=50, blank=True, null=True)
+    os = models.CharField(max_length=25)
+    premiere_mes = models.DateTimeField(blank=True, null=True)
     statut = models.CharField(max_length=10, choices=[
         (StatutAsset.sans_affectation, _('Sans affectation')),
         (StatutAsset.disponible, _('Disponible pour affectation')),
@@ -32,16 +33,11 @@ class Asset(models.Model):
     class Meta:
         abstract = True
 
-    def __str__(self):
-        return '%s' % (self.code)
-
 class Machine(Asset):
     """
     Définition du modèle d'une machine (PC, Mac...)
     """
     # Attributs propres
-    systeme = models.CharField(max_length=25)
-    premiere_mes = models.DateTimeField(blank=True, null=True)
     # Attributs liés
 
     class Meta:
@@ -55,8 +51,9 @@ class Mobile(Asset):
     Définition du modèle d'un Mobile (Android, IPhone...)
     """
     # Attributs propres
-    systeme = models.CharField(max_length=25)
-    premiere_mes = models.DateTimeField(blank=True, null=True)
+    numero_ligne = models.CharField(max_length=25)
+    operateur = models.CharField(max_length=50)
+    forfait = models.CharField(max_length=100)
     # Attributs liés
 
     class Meta:

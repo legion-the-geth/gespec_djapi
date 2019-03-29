@@ -1,31 +1,42 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from mouvement.models import Mouvement, Personne, Machine, Mobile
+from mouvement.models import Mouvement, Projet, Personne, Machine, Mobile
+from perimetre.models import Perimetre, Annuaire, Client
 
 class MouvementSerializer(serializers.HyperlinkedModelSerializer):
-    manager = serializers.HyperlinkedRelatedField(queryset=User.objects.all(), view_name='detail-user')
+    perimetre = serializers.HyperlinkedRelatedField(queryset=Perimetre.objects.all(), view_name='detail-perimetre')
+    projet = serializers.HyperlinkedRelatedField(queryset=Projet.objects.all(), view_name='detail-projet')
+    personne = serializers.HyperlinkedRelatedField(queryset=Personne.objects.all(), view_name='detail-personne')
 
     class Meta:
         model = Mouvement
-        fields = ('id', 'created', 'last_modified', 'name', 'code', 'manager')
+        fields = ('id', 
+            'created_at', 
+            'modified_at', 
+            'type_mouvmt', 
+            'zedmail', 
+            'cle_rsa',
+            'perimetre', 
+            'projet', 
+            'personne',
+        )
 
-class UserSerializer(serializers.ModelSerializer):
-    perimetres = serializers.PrimaryKeyRelatedField(many=True, queryset=Mouvement.objects.all())
-    
+class ProjetSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'perimetres')
+        model = Projet
+        fields = '__all__'
 
-class AnnuaireSerializer(serializers.HyperlinkedModelSerializer):
-    perimetres = serializers.PrimaryKeyRelatedField(many=True, queryset=Mouvement.objects.all())
-
+class PersonneSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Annuaire
-        fields = ('id', 'created', 'last_modified', 'name', 'host', 'port', 'user', 'pw', 'perimetres')
+        model = Personne
+        fields = '__all__'
 
-class ClientSerializer(serializers.HyperlinkedModelSerializer):
-    perimetres = serializers.PrimaryKeyRelatedField(many=True, queryset=Mouvement.objects.all())
-
+class MachineSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Client
-        fields = ('id', 'created', 'last_modified', 'name', 'perimetres')
+        model = Machine
+        fields = '__all__'
+
+class MobileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mobile
+        fields = '__all__'

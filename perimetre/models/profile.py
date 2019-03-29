@@ -11,7 +11,7 @@ class Profile(models.Model):
     # Attributs propres
     matricule = models.CharField(max_length=6, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
+    modified_at = models.DateTimeField(auto_now=True)
     first_login = models.DateTimeField()
     last_login = models.DateTimeField()
     # Attributs liés

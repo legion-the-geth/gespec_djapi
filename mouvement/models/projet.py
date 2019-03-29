@@ -1,5 +1,6 @@
 from django.db import models
 from mouvement.models import Personne
+from perimetre.models import Perimetre
 
 class Projet(models.Model):
     """
@@ -13,6 +14,7 @@ class Projet(models.Model):
     date_fin = models.DateTimeField()
     # Attributs liés
     responsable = models.ForeignKey(Personne, related_name='projets', blank=True, null=True, on_delete=models.SET_NULL)
+    perimetre = models.ForeignKey(Perimetre, related_name='projets', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-modified_at', '-created_at')

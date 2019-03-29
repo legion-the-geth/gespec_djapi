@@ -6,11 +6,11 @@ class Client(models.Model):
     """
     # Attributs propres
     created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
+    modified_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100)
     
     class Meta:
-        ordering = ('-last_modified', '-created')
+        ordering = ('-modified_at', '-created')
 
     def __str__(self):
         return self.name
