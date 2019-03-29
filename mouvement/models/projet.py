@@ -1,4 +1,5 @@
 from django.db import models
+from mouvement.models import Personne
 
 class Projet(models.Model):
     """
@@ -7,10 +8,14 @@ class Projet(models.Model):
     # Attributs propres
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
-    libelle = models.CharField(max_length=100)
+    nom = models.CharField(max_length=100)
+    date_debut = models.DateTimeField()
+    date_fin = models.DateTimeField()
+    # Attributs liés
+    responsable = models.ForeignKey(Personne, related_name='projets', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-modified_at', '-created_at')
 
     def __str__(self):
-        return '%s' % (self.libelle)
+        return '%s' % (self.nom)
