@@ -13,6 +13,8 @@ urlpatterns = [
     path('clients/<int:pk>/', views.DetailClient.as_view()),
     path('users/', views.ListeUsers.as_view(), name='liste-users'),
     path('users/<int:pk>/', views.DetailUser.as_view(), name='detail-user'),
+    path('groupes/', views.ListeGroupes.as_view(), name='liste-groupes'),
+    path('groupes/<int:pk>/', views.DetailGroupe.as_view(), name='detail-groupe'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

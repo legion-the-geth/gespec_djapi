@@ -7,20 +7,20 @@ from mouvement.serializers import MachineSerializer, MobileSerializer
 class ListeMachines(generics.ListCreateAPIView):
     queryset = Machine.objects.all()
     serializer_class = MachineSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 class DetailMachine(generics.RetrieveUpdateDestroyAPIView):
     queryset = Machine.objects.all()
     serializer_class = MachineSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 # Mobiles
 class ListeMobiles(generics.ListCreateAPIView):
     queryset = Mobile.objects.all()
     serializer_class = MobileSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 class DetailMobile(generics.RetrieveUpdateDestroyAPIView):
     queryset = Mobile.objects.all()
     serializer_class = MobileSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)

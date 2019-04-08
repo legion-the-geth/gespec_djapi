@@ -8,7 +8,7 @@ from perimetre.permissions import ManagerPerimOrReadOnly
 class ListePerimetres(generics.ListCreateAPIView):
     queryset = Perimetre.objects.all()
     serializer_class = PerimetreSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ManagerPerimOrReadOnly)
+    permission_classes = (permissions.IsAuthenticated, ManagerPerimOrReadOnly)
     
     def perform_create(self, serializer):
         serializer.save(manager=self.request.user)
@@ -16,7 +16,7 @@ class ListePerimetres(generics.ListCreateAPIView):
 class DetailPerimetre(generics.RetrieveUpdateDestroyAPIView):
     queryset = Perimetre.objects.all()
     serializer_class = PerimetreSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticated, )
 
 class DetailPerimetreHtml(generics.GenericAPIView):
     queryset = Perimetre.objects.all()

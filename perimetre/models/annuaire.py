@@ -14,7 +14,7 @@ class Annuaire(models.Model):
     pw = models.CharField(max_length=25, blank=True, null=True)
 
     class Meta:
-        ordering = ('-modified_at', '-created')
+        ordering = ('-modified_at', '-created_at')
 
     def __str__(self):
         return self.name

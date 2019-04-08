@@ -6,9 +6,9 @@ from mouvement.serializers import MouvementSerializer
 class ListeMouvements(generics.ListCreateAPIView):
     queryset = Mouvement.objects.all()
     serializer_class = MouvementSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticated, )
 
 class DetailMouvement(generics.RetrieveUpdateDestroyAPIView):
     queryset = Mouvement.objects.all()
     serializer_class = MouvementSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticated, )

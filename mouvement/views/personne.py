@@ -6,9 +6,9 @@ from mouvement.serializers import PersonneSerializer
 class ListePersonnes(generics.ListCreateAPIView):
     queryset = Personne.objects.all()
     serializer_class = PersonneSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 class DetailPersonne(generics.RetrieveUpdateDestroyAPIView):
     queryset = Personne.objects.all()
     serializer_class = PersonneSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)

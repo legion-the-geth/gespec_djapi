@@ -6,9 +6,9 @@ from perimetre.serializers import ClientSerializer
 class ListeClients(generics.ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticated, )
 
 class DetailClient(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticated, )

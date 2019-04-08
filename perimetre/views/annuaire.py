@@ -6,9 +6,9 @@ from perimetre.serializers import AnnuaireSerializer
 class ListeAnnuaires(generics.ListCreateAPIView):
     queryset = Annuaire.objects.all()
     serializer_class = AnnuaireSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticated, )
 
 class DetailAnnuaire(generics.RetrieveUpdateDestroyAPIView):
     queryset = Annuaire.objects.all()
     serializer_class = AnnuaireSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    permission_classes = (permissions.IsAuthenticated, )

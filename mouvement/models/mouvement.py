@@ -2,7 +2,6 @@ from django.db import models
 from enum import Enum
 from django.utils.translation import gettext as _
 from perimetre.models import Perimetre
-from mouvement.models import Machine, Mobile, Projet, Personne
 
 class TypeMouvement(Enum):
     personne = "P"
@@ -24,11 +23,11 @@ class Mouvement(models.Model):
     # Attributs liés
     # 1-n
     perimetre = models.ForeignKey(Perimetre, related_name='mouvements', blank=True, null=True, on_delete=models.SET_NULL)
-    projet = models.ForeignKey(Projet, related_name='mouvements', blank=True, null=True, on_delete=models.SET_NULL)
-    personne = models.ForeignKey(Personne, related_name='mouvements', blank=True, null=True, on_delete=models.SET_NULL)
+    projet = models.ForeignKey('mouvement.Projet', related_name='mouvements', blank=True, null=True, on_delete=models.SET_NULL)
+    personne = models.ForeignKey('mouvement.Personne', related_name='mouvements', blank=True, null=True, on_delete=models.SET_NULL)
     # n-n
-    machines = models.ManyToManyField(Machine, related_name='mouvements')
-    mobiles = models.ManyToManyField(Mobile, related_name='mouvements')
+    machines = models.ManyToManyField('mouvement.Machine', related_name='mouvements')
+    mobiles = models.ManyToManyField('mouvement.Mobile', related_name='mouvements')
 
     class Meta:
         ordering = ('-modified_at', '-created_at')

@@ -6,7 +6,7 @@ class Perimetre(models.Model):
     Définition du modèle d'un périmètre de conformité.
     """
     # Attributs propres
-    created = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100)
     code = models.CharField(max_length=5)
@@ -16,7 +16,7 @@ class Perimetre(models.Model):
     annuaire = models.ForeignKey(Annuaire, related_name='perimetres', blank=True, null=True, on_delete=models.SET_NULL)
 
     class Meta:
-        ordering = ('-modified_at', '-created')
+        ordering = ('-modified_at', '-created_at')
 
     def __str__(self):
         return '%s (%s)' % (self.name, self.code)

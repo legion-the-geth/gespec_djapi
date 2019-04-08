@@ -7,9 +7,9 @@ from mouvement.serializers import ProjetSerializer
 class ListeProjets(generics.ListCreateAPIView):
     queryset = Projet.objects.all()
     serializer_class = ProjetSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 class DetailProjet(generics.RetrieveUpdateDestroyAPIView):
     queryset = Projet.objects.all()
     serializer_class = ProjetSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
